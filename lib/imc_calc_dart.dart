@@ -1,21 +1,18 @@
-import 'dart:convert';
-import 'dart:io';
 import 'package:imc_calc_dart/model/pessoa.dart';
+import 'package:imc_calc_dart/utils.dart';
 
 void calculate() {
-  print("Informe seu nome: ");
-  var line = stdin.readLineSync(encoding: utf8);
-  String nome = line?.trim() ?? "";
-
-  print("Informe seu peso: ");
-  line = stdin.readLineSync(encoding: utf8);
-  double peso = double.tryParse(line?.trim() ?? "") ?? 0.0;
-
-  print("Informe sua altura: ");
-  line = stdin.readLineSync(encoding: utf8);
-  double altura = double.tryParse(line?.trim() ?? "") ?? 0.0;
+  String nome = lerConsole("Informe seu nome: ");
+  double peso = lerConsoleDouble("Informe seu peso: ");
+  double altura = lerConsoleDouble("Informe sua altura: ");
 
   Pessoa pessoa = Pessoa(nome, peso, altura);
-  print(pessoa.calcularIMC());
-  print(pessoa.classificarIMC());
+
+  print('\n--- Resultado do Cálculo do IMC ---');
+  print('Nome: ${pessoa.getNome()}');
+  print('Peso: ${pessoa.getPeso().toStringAsFixed(2)} kg');
+  print('Altura: ${pessoa.getAltura().toStringAsFixed(2)} m');
+  print('IMC: ${pessoa.calcularIMC()}');
+  print('Classificação: ${pessoa.classificarIMC()}');
+  print('-----------------------------------\n');
 }

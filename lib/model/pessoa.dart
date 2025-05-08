@@ -23,6 +23,10 @@ class Pessoa {
     _altura = altura;
   }
 
+  double getAltura() {
+    return _altura;
+  }
+
   Pessoa(String nome, double peso, double altura) {
     if (nome.isEmpty || nome == "") {
       throw ArgumentError("Nome não pode ser vazio.");
@@ -39,7 +43,8 @@ class Pessoa {
   }
 
   double calcularIMC() {
-    return _peso / (_altura * _altura);
+    double imc = _peso / (_altura * _altura);
+    return double.parse(imc.toStringAsFixed(2));
   }
 
   String classificarIMC() {
